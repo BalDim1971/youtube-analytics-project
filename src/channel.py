@@ -18,13 +18,7 @@ class Channel:
         
         self.__channel_id = channel_id
 
-        # API_KEY скопирован из гугла и вставлен в переменные окружения
-        self.api_key: str = os.getenv('API_KEY')
-        
-        # создать специальный объект для работы с API
-        self.youtube = build('youtube', 'v3', developerKey=self.api_key)
-
-        self.channel = self.youtube.channels().list(id=self.__channel_id, part='snippet,statistics').execute()
+        self.channel = self.get_service().channels().list(id=self.__channel_id, part='snippet,statistics').execute()
         self.title = self.channel['items'][0]['snippet']['title']
         self.video_count = self.channel['items'][0]['statistics']['videoCount']
         self.url = 'https://www.youtube.com/channel/' + self.__channel_id
@@ -46,8 +40,7 @@ class Channel:
         api_key: str = os.getenv('API_KEY')
     
         # создать специальный объект для работы с API
-        youtube = build('youtube', 'v3', developerKey=api_key)
-        return youtube
+        return build('youtube', 'v3', developerKey=api_key)
     
     def to_json(self, name_file):
         '''
