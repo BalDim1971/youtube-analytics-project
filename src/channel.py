@@ -35,42 +35,56 @@ class Channel:
         '''
         Магический метод сложения по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Складывать можно только два объекта Channel.')
         return self.subscriberCount + other.subscriberCount
     
     def __sub__(self, other):
         '''
         Магический метод вычитания по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Вычитать можно только два объекта Channel.')
         return self.subscriberCount - other.subscriberCount
     
     def __gt__(self, other):
         '''
         Магический метод сравнения > по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Сравнивать можно только два объекта Channel.')
         return self.subscriberCount > other.subscriberCount
     
     def __ge__(self, other):
         '''
         Магический метод сравнения >= по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Сравнивать можно только два объекта Channel.')
         return self.subscriberCount >= other.subscriberCount
     
     def __lt__(self, other):
         '''
         Магический метод сравнения < по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Сравнивать можно только два объекта Channel.')
         return self.subscriberCount < other.subscriberCount
     
     def __le__(self, other):
         '''
         Магический метод сравнения <= по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Сравнивать можно только два объекта Channel.')
         return self.subscriberCount <= other.subscriberCount
     
     def __eq__(self, other):
         '''
         Магический метод сравнения == по количеству подписчиков
         '''
+        if not isinstance(other, Channel):
+            raise ValueError('Сравнивать можно только два объекта Channel.')
         return self.subscriberCount == other.subscriberCount
     
     def print_info(self) -> None:
