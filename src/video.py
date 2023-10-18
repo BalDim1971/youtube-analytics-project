@@ -27,10 +27,18 @@ class Video:
 		self.id_video = id_video
 		self.content = self.get_service().videos().list(id=self.id_video, part='snippet, statistics').execute()
 		
-		self.name_video = self.content['items'][0]['snippet']['title']
-		self.url_video = 'https://youtu.be/' + self.id_video
-		self.count_of_view = self.content['items'][0]['statistics']['viewCount']
-		self.count_of_like = self.content['items'][0]['statistics']['likeCount']
+		try:
+			self.title = self.content['items'][0]['snippet']['title']
+
+			self.url_video = 'https://youtu.be/' + self.id_video
+			self.count_of_view = self.content['items'][0]['statistics']['viewCount']
+			self.like_count = self.content['items'][0]['statistics']['likeCount']
+		
+		except IndexError:
+			self.title = None
+			self.url_video = None
+			self.count_of_view = None
+			self.like_count = None
 	
 	@classmethod
 	def get_service(cls):
@@ -49,7 +57,7 @@ class Video:
 		'''
 		Магический метод, возвращающий название видео
 		'''
-		return f'{self.name_video}'
+		return f'{self.title}'
 
 
 class PLVideo(Video):
